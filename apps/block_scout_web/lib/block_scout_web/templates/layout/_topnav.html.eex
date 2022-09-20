@@ -138,34 +138,40 @@
             </div>
           </li>
         <% end %>
-        <li class="nav-item dropdown">
-          <a class="nav-link topnav-nav-link active-icon <%= if dropdown_nets() != [], do: "dropdown-toggle" %>" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span class="nav-link-icon">
-              <%= render BlockScoutWeb.IconsView, "_active_icon.html" %>
-            </span>
-            <%= subnetwork_title() %>
-          </a>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown"> 
-            <%= if Enum.count(main_nets) > 0 do %>
-              <a class="dropdown-item header division">Mainnets</a> 
-              <%= for %{url: url, title: title} <- main_nets do %>  
-                <a class="dropdown-item" href="<%= url %>"><%= title %></a>
-              <% end %>
-            <% end %>
-            <%= if Enum.count(test_nets) > 0 do %>
-              <a class="dropdown-item header division">Testnets</a> 
-              <%= for %{url: url, title: title} <- test_nets do %> 
-                <a class="dropdown-item" href="<%= url %>"><%= title %></a>
-              <% end %>
-            <% end %>
-            <%= if Enum.count(other_nets) > 0 do %>
-              <a class="dropdown-item header division">Other Networks</a> 
-              <%= for %{url: url, title: title} <- other_nets do %>  
-                <a class="dropdown-item" href="<%= url %>"><%= title %></a>
-              <% end %> 
-            <% end %>
-          </div>
-        </li>
+        <li class="nav-item dropdown" id="activeTransactions">
+            <a href="#" role="button" id="navbarTransactionsDropdown" class="nav-link topnav-nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="nav-link-icon">
+                <%= render BlockScoutWeb.IconsView, "_apps_icon.html" %>
+              </span>
+              <%= gettext("Resources") %>
+            </a>
+            <div class="dropdown-menu" aria-labeledby="navbarTransactionsDropdown">
+              <%= link(
+                    gettext("Tres Leches Doc"),
+                    class: "dropdown-item #{tab_status("pending-transactions", @conn.request_path)}",\
+                    to: "https://docs.tresleches.finance/",
+                    target: "_blank"
+                  ) %>
+               <%= link(
+                    gettext("Tres Leches Repo"),
+                    class: "dropdown-item #{tab_status("pending-transactions", @conn.request_path)}",\
+                    to: "https://github.com/3LechesCake/Blockchain",
+                    target: "_blank"
+                  ) %>
+            </div>
+          </li>
+          <li class="nav-item">
+           <%= link(
+                    class: "nav-link topnav-nav-link",
+                    to: "https://swap.tresleches.finance/",
+                    target: "_blank"
+                  ) do %>
+              <span class="nav-link-icon">
+                <%= render BlockScoutWeb.IconsView, "_tokens_icon.html" %>
+              </span>
+               <%= gettext("Swap") %>
+               <% end %>
+          </li>
         <!-- Dark mode changer -->
         <button class="dark-mode-changer" id="dark-mode-changer">
           <svg xmlns="http://www.w3.org/2000/svg" width="15" height="16">

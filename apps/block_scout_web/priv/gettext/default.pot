@@ -395,7 +395,7 @@ msgstr ""
 #: lib/block_scout_web/templates/tokens/transfer/_token_transfer.html.eex:43
 #, elixir-autogen, elixir-format
 msgid "Block #%{number}"
-msgstr ""
+msgstr "3Leches"
 
 #: lib/block_scout_web/templates/block/_metatags.html.eex:3
 #, elixir-autogen, elixir-format
