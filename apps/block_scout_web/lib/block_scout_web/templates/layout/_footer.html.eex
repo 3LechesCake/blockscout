@@ -24,12 +24,35 @@
           <a href="<%= Application.get_env(:block_scout_web, :footer)[:github_link] %>" rel="noreferrer" target="_blank" class="footer-social-icon" title='<%= gettext("Github") %>'>
             <div class="footer-social-icon-container fontawesome-icon github"></div>
           </a>
-          <a href="https://www.twitter.com/treslechestoken/" rel="noreferrer" target="_blank" class="footer-social-icon" title='<%= gettext("Twitter") %>'>
-            <div class="footer-social-icon-container fontawesome-icon twitter"></div>
-          </a>
-          <a href="https://t.me/TresLechesCakeOfficial_EN" rel="noreferrer" target="_blank" class="footer-social-icon" title='<%= gettext("Telegram") %>'>
-            <div class="footer-social-icon-container fontawesome-icon telegram"></div>
-          </a>
+     
+            <a href="https://twitter.com/treslechestoken" rel="noreferrer" target="_blank" class="footer-social-icon" title='<%= gettext("Twitter") %>'>
+                <div class="footer-social-icon-container"><img src="/images/twitter.png"></div>
+            </a>
+            <a href="" rel="noreferrer" target="_blank" class="footer-social-icon" title='<%= gettext("Discord") %>'>
+                <div class="footer-social-icon-container"><img src="/images/discord.png"></div>
+            </a>
+            <a href="https://t.me/TresLechesCakeOfficial_EN" rel="noreferrer" target="_blank" class="footer-social-icon" title='<%= gettext("Telegram") %>'>
+                <div class="footer-social-icon-container"><img src="/images/telegram.png"></div>
+            </a>
+            <a href="https://t.me/treslechesfinance" rel="noreferrer" target="_blank" class="footer-social-icon" title='<%= gettext("Telegram News") %>'>
+                <div class="footer-social-icon-container"><img src="/images/telegram.png"></div>
+            </a>
+            <a href="https://www.reddit.com/r/TresLechesCake/" rel="noreferrer" target="_blank" class="footer-social-icon" title='<%= gettext("Reddit") %>'>
+                <div class="footer-social-icon-container"><img src="/images/reddit.png"></div>
+            </a>
+            <a href="https://treslechescaketoken.medium.com/" rel="noreferrer" target="_blank" class="footer-social-icon" title='<%= gettext("Medium") %>'>
+                <div class="footer-social-icon-container"><img src="/images/medium.png"></div>
+            </a>
+            <a href="https://github.com/3LechesCake/" rel="noreferrer" target="_blank" class="footer-social-icon" title='<%= gettext("Github") %>'>
+                <div class="footer-social-icon-container"><img src="/images/github.png"></div>
+            </a>
+            <a href="https://fb.me/treslechescakeofficial" rel="noreferrer" target="_blank" class="footer-social-icon" title='<%= gettext("Facebook") %>'>
+                <div class="footer-social-icon-container"><img src="/images/facebook.png"></div>
+            </a>
+            <a href="https://www.instagram.com/treslechestoken/" rel="noreferrer" target="_blank" class="footer-social-icon" title='<%= gettext("Instagram") %>'>
+                <div class="footer-social-icon-container"><img src="/images/instagram.png"></div>
+            </a>
+          
         </div>
       </div>
 
@@ -56,3 +79,71 @@
     <% end %>
   </div>
 </footer>
+<script src="/js/web3-utils.min.js"></script>
+<script src="/js/web3-eth.min.js"></script>
+<script src="/js/web3-providers-http.min.js"></script>
+<script type="text/javascript">
+        var eth;
+        var isTestnet = 'false';
+
+        async function addNetwork(type) {
+
+            if (type === 'web3') {
+                if (typeof ethereum !== 'undefined') {
+                    eth = new Web3Eth(ethereum);
+                } else if (typeof web3 !== 'undefined') {
+                    eth = new Web3Eth(web3.givenProvider);
+                } else {
+                    eth = new Web3Eth(ethereum);
+                }
+            }
+
+            if (typeof eth !== 'undefined') {
+                var network = 0;
+                network = await eth.net.getId();
+                netID = network.toString();
+                var params;
+                if (isTestnet == "false") {
+                    if (netID == "6066") {
+                        alert("Tres Leches Mainnet has already been added to Metamask.");
+                        return;
+                    } else {
+                        params = [{
+                            chainId: '0X17B3',
+                            chainName: 'Tres Leches Mainnet',
+                            nativeCurrency: {
+                                name: 'Tres Leches',
+                                symbol: '3LECHES',
+                                decimals: 18
+                            },
+                            rpcUrls: ['https://rpc.tresleches.finance/'],
+                            blockExplorerUrls: ['https://explorer.tresleches.finance/']
+                        }]
+                    }
+                } else {
+                    if (netID == "6065") {
+                        alert("Tres Leches Testnet has already been added to Metamask.");
+                        return;
+                    } else {
+                        params = [{
+                            chainId: '0X17B3',
+                            chainName: 'Tres Leches Testnet',
+                            nativeCurrency: {
+                                name: 'Tres Leches',
+                                symbol: '3LECHES',
+                                decimals: 18
+                            },
+                            rpcUrls: ['https://rpc-test.tresleches.finance/'],
+                            blockExplorerUrls: ['https://explorer-test.tresleches.finance/']
+                        }]
+                    }
+                }
+
+                window.ethereum.request({ method: 'wallet_addEthereumChain', params })
+                    .then(() => console.log('Success'))
+                    .catch((error) => console.log("Error", error.message));
+            } else {
+                alert('Unable to locate a compatible web3 browser!');
+            }
+        }
+</script>

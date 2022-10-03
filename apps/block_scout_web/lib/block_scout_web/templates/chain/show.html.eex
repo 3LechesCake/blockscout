@@ -125,6 +125,16 @@
               <% end %>
             </div>
           </div>
+          <div class="card-chain-info-supply">
+          <div class="card-chain-supply">
+            <span class="card-chain-supply--title">Total Supply</span>
+            <span class="card-chain-supply--data"><%= BlockScoutWeb.Cldr.Number.to_string!(@total_supply, format: "#,###") %></span>
+          </div>
+          <div class="card-chain-supply">
+            <span class="card-chain-supply--title">Total Circulating</span>
+            <span class="card-chain-supply--data"><%= BlockScoutWeb.Cldr.Number.to_string!(@total_supply, format: "#,###") %></span>
+          </div>
+      </div>
           <div class="dashboard-banner-network-stats-item dashboard-banner-network-stats-item-3">
             <span class="dashboard-banner-network-stats-label">
               <%= gettext "Total blocks" %>
