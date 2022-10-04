@@ -169,15 +169,211 @@ $card-tab-icon-color-active: #fff !default;
 }
 
 .card-chain-blocks {
-  min-height: 233px;
-  max-height: auto;
+  min-height: 120px;
+  padding: 1rem;
+  justify-content: center;
+  margin-bottom: 20px;
   [class*="col-"]:last-child {
     .tile {
       margin-bottom: 0;
     }
   }
+  .col-xs-12 {
+    &:not(:first-child) {
+      .card-chain-item {
+        border-top: 2px dashed #E7E7E7;
+        @media (min-width: $breakpoint-lg) {
+          border-top: 0;
+          border-left: 2px dashed #E7E7E7;
+        }
+      }
+    }
+  }
+  .card-chain-item {
+    display: flex;
+    flex: 1;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-left: 0;
+    margin-right: 0;
+    @media (min-width: $breakpoint-lg) {
+      justify-content: flex-start;
+      padding-top: 0;
+      padding-bottom: 0;
+      margin-left: -15px;
+      margin-right: -15px;
+      padding-left: 32px;
+    }
+
+    .card-chain-item-content {
+      display: flex;
+      flex-direction: column;
+      margin-left: 24px;
+
+      .cart-chain-item--title {
+        font-size: 15px;
+        font-weight: 400;
+        color: #828BA0;
+      }
+
+      .cart-chain-item--data {
+        font-size: 22px;
+        font-weight: 700;
+        color: #333333;
+      }
+    }
+
+    .card-chain-item-image {
+      flex-basis: 20%;
+    }
+
+
+  }
 }
 
+.card-chain-marketcap {
+  display: flex;
+  min-height: 225px;
+  margin-bottom: 20px;
+  background-color: rgb(202 199 226 / 25%);
+  flex-direction: column !important;
+  @media(min-width: $breakpoint-lg) {
+    flex-direction: row !important;
+  }
+  .card-chain-marketcap-content {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 15px;
+    flex: 1;
+    padding: 25px;
+    justify-content: center;
+    box-shadow: 0 0 5px 0 rgba(202, 199, 226, 0.5);
+    margin-top: 15px;
+    @media (min-width: $breakpoint-lg) {
+      margin-top: 0px;
+      flex-direction: row;
+    }
+    &:not(:first-child) {
+      @media (min-width: $breakpoint-lg) {
+        margin-left: 15px;
+      }
+    }
+    &:first-child {
+      padding-top: 60px;
+    }
+  }
+  .card-chain-supply {
+    display: flex;
+    flex-direction: column;
+    border-left: 5px solid #39B54A;
+    padding-left: 15px;
+    &:not(:first-child) {
+      margin-top: 50px;
+      @include media-breakpoint-between(sm, md) {
+        margin-top: 25px;
+      }
+    }
+    .card-chain-supply--title {
+      font-size: 15px;
+      font-weight: 400;
+      color: #828BA0;
+    }
+    .card-chain-supply--data {
+      font-size: 18px;
+      font-weight: 700;
+      color: #333333;
+    }
+    @include media-breakpoint-between(sm, md) {
+      flex: 1;
+    }
+  }
+
+  .card-chain-info-price {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 35%;
+    @include media-breakpoint-up(lg) {
+      align-self: center;
+    }
+    .card-chain-info-price--value {
+      font-size: 14px;
+      font-weight: 700;
+      color: #333333;
+    }
+    .card-chain-info-price--text {
+      font-size: 14px;
+      font-weight: 400;
+      color: #828BA0;
+    }
+  }
+
+  .card-chain-info-asset {
+    display: flex;
+    margin-bottom: 20px;
+    .card-chain-info-asset--logo{
+      align-self: center;
+    }
+    .card-chain-info-asset--info {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      margin-left: 8px;
+    }
+    .card-chain-info-asset--name {
+      font-size: 16px;
+      font-weight: 700;
+    }
+    .card-chain-info-asset--description {
+      font-size: 14px;
+      font-weight: 400;
+      color: #828BA0;
+    }
+  }
+
+  .card-chain-info-marketcap{
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    border-top: 2px dashed #E7E7E7;
+    margin-top: 20px;
+    padding-top: 20px;
+    @media (min-width: $breakpoint-lg) {
+      border-top: 0;
+      border-left: 2px dashed #E7E7E7;
+      padding-left: 30px;
+      margin-top: 0;
+      padding-top: 0;
+    }
+    .card-chain-info-marketcap-box {
+      display: flex;
+      flex-direction: column;
+    }
+    .card-chain-info-marketcap--title {
+      font-size: 14px;
+      font-weight: 400;
+      color: #828BA0;
+    }
+    .card-chain-info-marketcap--value {
+      font-size: 14px;
+      font-weight: 700;
+      color: #333333;
+    }
+  }
+}
+.card-chain-info-supply {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 50%;
+}
+.card-chain-info-wallet {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  @media (max-width: $breakpoint-lg) {
+    margin-top: 50px;
+  }
+}
 .card-chain-transactions {
   min-height: 664px;
   max-height: auto;
@@ -313,35 +509,17 @@ $card-tab-icon-color-active: #fff !default;
 }
 
 .list-title-description {
-  @media (min-width: 992px) {
+  @media (min-width: $breakpoint-lg) {
     display: inline-block;
   }
 }
 
 .list-top-pagination-container-wrapper {
-  @media (min-width: 992px) {
+  @media (min-width: $breakpoint-lg) {
     float: right;
   }
 }
 
 .function-output {
   margin-left: -1rem;
-}
-
-.functions-tabs input[type="radio"] {
-  display: none;
-}
-
-.card-misc-container {
-  padding-left: $card-horizontal-padding;
-  padding-top: $card-horizontal-padding;
-
-  .btn-line-inversed,
-  .btn-line {
-    display: inline-flex;
-  }
-}
-
-.nav-pills .nav-link.active {
-  background-color: $primary;
 }

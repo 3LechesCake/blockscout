@@ -3,7 +3,7 @@ defmodule BlockScoutWeb.ChainController do
 
   import BlockScoutWeb.Chain, only: [paging_options: 1]
 
-  alias BlockScoutWeb.{ChainView, Controller}
+  alias BlockScoutWeb.{BlockView, ChainView, Controller}
   alias Explorer.{Chain, PagingOptions, Repo}
   alias Explorer.Chain.{Address, Block, Transaction}
   alias Explorer.Chain.Cache.Block, as: BlockCache
@@ -21,6 +21,9 @@ defmodule BlockScoutWeb.ChainController do
     total_gas_usage = GasUsage.total()
     block_count = BlockCache.estimated_count()
     address_count = Chain.address_estimated_count()
+    token_count = Chain.token_estimated_count()
+    total_supply = Chain.total_supply()
+    note_count = 2
 
     market_cap_calculation =
       case Application.get_env(:explorer, :supply) do
@@ -57,6 +60,9 @@ defmodule BlockScoutWeb.ChainController do
       transactions_path: recent_transactions_path(conn, :index),
       transaction_stats: transaction_stats,
       block_count: block_count,
+      token_count: token_count,
+      note_count: note_count,
+      total_supply: total_supply,
       gas_price: Application.get_env(:block_scout_web, :gas_price)
     )
   end
@@ -151,7 +157,7 @@ defmodule BlockScoutWeb.ChainController do
   def chain_blocks(conn, _params) do
     if ajax?(conn) do
       blocks =
-        [paging_options: %PagingOptions{page_size: 4}]
+        [paging_options: %PagingOptions{page_size: 5}]
         |> Chain.list_blocks()
         |> Repo.preload([[miner: :names], :transactions, :rewards])
         |> Enum.map(fn block ->
@@ -160,7 +166,8 @@ defmodule BlockScoutWeb.ChainController do
               View.render_to_string(
                 ChainView,
                 "_block.html",
-                block: block
+                block: block,
+                block_type: BlockView.block_type(block)
               ),
             block_number: block.number
           }

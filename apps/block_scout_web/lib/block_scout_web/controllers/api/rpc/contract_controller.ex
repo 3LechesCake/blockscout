@@ -7,10 +7,9 @@ defmodule BlockScoutWeb.API.RPC.ContractController do
   alias BlockScoutWeb.API.RPC.Helpers
   alias Explorer.Chain
   alias Explorer.Chain.Events.Publisher, as: EventsPublisher
-  alias Explorer.Chain.{Address, Hash, SmartContract}
+  alias Explorer.Chain.{Hash, SmartContract}
   alias Explorer.Chain.SmartContract.VerificationStatus
   alias Explorer.Etherscan.Contracts
-  alias Explorer.SmartContract.Helper
   alias Explorer.SmartContract.Solidity.Publisher
   alias Explorer.SmartContract.Solidity.PublisherWorker, as: SolidityPublisherWorker
   alias Explorer.SmartContract.Vyper.Publisher, as: VyperPublisher
@@ -120,7 +119,7 @@ defmodule BlockScoutWeb.API.RPC.ContractController do
          {:format, {:ok, _casted_address_hash}} <- to_address_hash(address_hash),
          {:params, {:ok, fetched_params}} <- {:params, fetch_verifysourcecode_params(params)},
          uid <- VerificationStatus.generate_uid(address_hash) do
-      Que.add(SolidityPublisherWorker, {"json_api", fetched_params, json_input, uid})
+      Que.add(SolidityPublisherWorker, {fetched_params, json_input, uid})
 
       render(conn, :show, %{result: uid})
     else
@@ -181,11 +180,11 @@ defmodule BlockScoutWeb.API.RPC.ContractController do
 
       jsons =
         files_array
-        |> Enum.filter(fn file -> Helper.json_file?(file.filename) end)
+        |> Enum.filter(fn file -> only_json(file.filename) end)
 
       sols =
         files_array
-        |> Enum.filter(fn file -> Helper.sol_file?(file.filename) end)
+        |> Enum.filter(fn file -> only_sol(file.filename) end)
 
       if length(jsons) > 0 and length(sols) > 0 do
         {:ok, files_array}
@@ -200,6 +199,26 @@ defmodule BlockScoutWeb.API.RPC.ContractController do
       "sol" ->
         true
 
+      "json" ->
+        true
+
+      _ ->
+        false
+    end
+  end
+
+  defp only_sol(filename) do
+    case List.last(String.split(String.downcase(filename), ".")) do
+      "sol" ->
+        true
+
+      _ ->
+        false
+    end
+  end
+
+  defp only_json(filename) do
+    case List.last(String.split(String.downcase(filename), ".")) do
       "json" ->
         true
 
@@ -404,7 +423,7 @@ defmodule BlockScoutWeb.API.RPC.ContractController do
       address = Contracts.address_hash_to_address_with_source_code(address_hash)
 
       render(conn, :getsourcecode, %{
-        contract: address || %Address{hash: address_hash, smart_contract: nil}
+        contract: address
       })
     else
       {:address_param, :error} ->
@@ -412,6 +431,9 @@ defmodule BlockScoutWeb.API.RPC.ContractController do
 
       {:format, :error} ->
         render(conn, :error, error: @invalid_address)
+
+      {:contract, :not_found} ->
+        render(conn, :getsourcecode, %{contract: nil, address_hash: nil})
     end
   end
 

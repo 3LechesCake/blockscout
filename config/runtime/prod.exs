@@ -11,6 +11,12 @@ config :block_scout_web, BlockScoutWeb.Endpoint,
   secret_key_base: System.get_env("SECRET_KEY_BASE"),
   check_origin: System.get_env("CHECK_ORIGIN", "false") == "true" || false,
   http: [port: System.get_env("PORT")],
+  https: [
+    port: (port && port + 1) || System.get_env("SPORT"),
+    cipher_suite: :strong,
+    certfile: System.get_env("CERTFILE") || "priv/cert/selfsigned.pem",
+    keyfile: System.get_env("KEYFILE") || "priv/cert/selfsigned_key.pem"
+  ]
   url: [
     scheme: System.get_env("BLOCKSCOUT_PROTOCOL") || "https",
     port: System.get_env("PORT"),

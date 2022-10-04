@@ -22,7 +22,7 @@ $dashboard-banner-chart-axis-font-color-alt: #333;
 .dashboard-banner-container {
   @include gradient-container();
   margin-bottom: 3rem;
-  overflow: hidden;
+  // overflow: hidden;
   padding: 0;
   position: relative;
   height: 264px;
@@ -39,12 +39,13 @@ $dashboard-banner-chart-axis-font-color-alt: #333;
   justify-content: space-between;
   position: relative;
   z-index: 9;
+  min-height: 240px;
 
   @include media-breakpoint-between(lg, xl) {
-    height: 249px;
+    height: 300px;
   }
 
-  @include media-breakpoint-down(sm) {
+  @include media-breakpoint-down(md) {
     flex-direction: column;
   }
 }

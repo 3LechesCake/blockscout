@@ -2,12 +2,12 @@ import $ from 'jquery'
 import numeral from 'numeral'
 import { BigNumber } from 'bignumber.js'
 
-export function formatUsdValue (value) {
+export function formatUsdValue (value, removeSuffix) {
   const formattedValue = formatCurrencyValue(value)
   if (formattedValue === 'N/A') {
     return formattedValue
   } else {
-    return `${formattedValue} USD`
+    return `${formattedValue} ${!removeSuffix ? 'USD' : ''}`
   }
 }
 
@@ -40,6 +40,9 @@ export function formatAllUsdValues (root) {
   root.find('[data-usd-value]').each((i, el) => {
     el.innerHTML = formatUsdValue(el.dataset.usdValue)
   })
+  root.find('[data-usd-value2]').each((i, el) => {
+    el.innerHTML = formatUsdValue(el.dataset.usdValue2, true)
+  })
   root.find('[data-token-usd-value]').each((i, el) => {
     el.innerHTML = formatTokenUsdValue(el.dataset.tokenUsdValue)
   })
@@ -50,6 +53,15 @@ formatAllUsdValues()
 
 function tryUpdateCalculatedUsdValues (el, usdExchangeRate = el.dataset.usdExchangeRate) {
   // eslint-disable-next-line no-prototype-builtins
+  if (el.dataset.hasOwnProperty('weiValue2')) {
+    const ether2 = weiToEther(el.dataset.weiValue2)
+    const usd2 = etherToUSD(ether2, usdExchangeRate)
+    const formattedUsd2 = formatUsdValue(usd2, true)
+    if (formattedUsd2 !== el.innerHTML) {
+      $(el).data('rawUsdValue', usd2)
+      el.innerHTML = formattedUsd2
+    }
+  }
   if (!el.dataset.hasOwnProperty('weiValue')) return
   const ether = weiToEther(el.dataset.weiValue)
   const usd = etherToUSD(ether, usdExchangeRate)

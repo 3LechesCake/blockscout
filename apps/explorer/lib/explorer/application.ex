@@ -43,8 +43,6 @@ defmodule Explorer.Application do
     base_children = [
       Explorer.Repo,
       Explorer.Repo.Replica1,
-      Explorer.Repo.Account,
-      Explorer.Vault,
       Supervisor.child_spec({SpandexDatadog.ApiServer, datadog_opts()}, id: SpandexDatadog.ApiServer),
       Supervisor.child_spec({Task.Supervisor, name: Explorer.HistoryTaskSupervisor}, id: Explorer.HistoryTaskSupervisor),
       Supervisor.child_spec({Task.Supervisor, name: Explorer.MarketTaskSupervisor}, id: Explorer.MarketTaskSupervisor),
@@ -67,8 +65,7 @@ defmodule Explorer.Application do
       con_cache_child_spec(RSK.cache_name(), ttl_check_interval: :timer.minutes(1), global_ttl: :timer.minutes(30)),
       Transactions,
       Accounts,
-      Uncles,
-      {Redix, redix_opts()}
+      Uncles
     ]
 
     children = base_children ++ configurable_children()
@@ -95,6 +92,7 @@ defmodule Explorer.Application do
       configure(Explorer.Counters.AddressTokenUsdSum),
       configure(Explorer.Counters.TokenHoldersCounter),
       configure(Explorer.Counters.TokenTransfersCounter),
+      configure(Explorer.Counters.TokensCounter),
       configure(Explorer.Counters.BlockBurnedFeeCounter),
       configure(Explorer.Counters.BlockPriorityFeeCounter),
       configure(Explorer.Counters.AverageBlockTime),
@@ -176,9 +174,5 @@ defmodule Explorer.Application do
       },
       id: {ConCache, name}
     )
-  end
-
-  defp redix_opts do
-    {System.get_env("ACCOUNT_REDIS_URL") || "redis://127.0.0.1:6379", [name: :redix]}
   end
 end

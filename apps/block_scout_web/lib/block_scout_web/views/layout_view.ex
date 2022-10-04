@@ -7,29 +7,16 @@ defmodule BlockScoutWeb.LayoutView do
 
   import BlockScoutWeb.AddressView, only: [from_address_hash: 1]
 
+  @issue_url "https://github.com/blockscout/blockscout/issues/new"
   @default_other_networks [
     %{
-      title: "POA",
-      url: "https://blockscout.com/poa/core"
+      title: "DND Mainnet",
+      url: "https://dynoscan.io"
     },
     %{
-      title: "Sokol",
-      url: "https://blockscout.com/poa/sokol",
+      title: "DND Testnet",
+      url: "https://testnet.dynoscan.io",
       test_net?: true
-    },
-    %{
-      title: "Gnosis Chain",
-      url: "https://blockscout.com/xdai/mainnet"
-    },
-    %{
-      title: "Ethereum Classic",
-      url: "https://blockscout.com/etc/mainnet",
-      other?: true
-    },
-    %{
-      title: "RSK",
-      url: "https://blockscout.com/rsk/mainnet",
-      other?: true
     }
   ]
 
@@ -70,9 +57,7 @@ defmodule BlockScoutWeb.LayoutView do
       title: subnetwork_title() <> ": <Issue Title>"
     ]
 
-    issue_url = "#{Application.get_env(:block_scout_web, :footer)[:github_link]}/issues/new"
-
-    [issue_url, "?", URI.encode_query(params)]
+    [@issue_url, "?", URI.encode_query(params)]
   end
 
   defp issue_body(conn) do
@@ -252,29 +237,4 @@ defmodule BlockScoutWeb.LayoutView do
   end
 
   defp validate_url(_), do: :error
-
-  def sign_in_link do
-    if Mix.env() == :test do
-      "/auth/auth0"
-    else
-      Application.get_env(:block_scout_web, BlockScoutWeb.Endpoint)[:url][:path] <> "auth/auth0"
-    end
-  end
-
-  def sign_out_link do
-    client_id = Application.get_env(:ueberauth, Ueberauth.Strategy.Auth0.OAuth)[:client_id]
-    return_to = Application.get_env(:ueberauth, Ueberauth)[:logout_return_to_url]
-    logout_url = Application.get_env(:ueberauth, Ueberauth)[:logout_url]
-
-    if client_id && return_to && logout_url do
-      params = [
-        client_id: client_id,
-        returnTo: return_to
-      ]
-
-      [logout_url, "?", URI.encode_query(params)]
-    else
-      []
-    end
-  end
 end
