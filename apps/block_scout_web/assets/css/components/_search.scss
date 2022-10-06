@@ -16,11 +16,9 @@
 .search-control {
     @media screen and (min-width: 992px) {
         height: 57px !important;
-        border-radius: 24px;
     }
     @media screen and (max-width: 992px) {
         height: 33px !important;
-        border-radius: 24px;
     }
     &.focused-field {
       border: 1px solid $secondary !important;
@@ -36,7 +34,7 @@
     padding: 0 !important;
     border: none !important;
     border-radius: 0 !important;
-    background-color: #ffffff !important;
+    background-color: #f5f6fa !important;
     @media screen and (max-width: 992px) {
         height: auto !important;
     }
@@ -44,7 +42,7 @@
 
 .main-search-autocomplete, .main-search-autocomplete-mobile {
     font-size: 14px !important;
-    color: #333333 !important;
+    color: #828ba0 !important;
 }
 
 .autocomplete-category {
@@ -63,7 +61,7 @@
 }
 
 ul[id^='autoComplete_list_'] {
-    // margin-left: -39px !important;
+    margin-left: -39px !important;
     border-radius: 0px !important;
     padding: 5px !important;
 }

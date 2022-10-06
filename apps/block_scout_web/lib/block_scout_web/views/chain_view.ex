@@ -4,11 +4,8 @@ defmodule BlockScoutWeb.ChainView do
   require Decimal
   import Number.Currency, only: [number_to_currency: 2]
 
-  alias Explorer.Chain
-  alias Explorer.Chain.{Block, Wei}
   alias BlockScoutWeb.LayoutView
   alias Explorer.Chain.Cache.GasPriceOracle
-  alias Explorer.Counters.{BlockBurnedFeeCounter, BlockPriorityFeeCounter}
 
   defp market_cap(:standard, %{available_supply: available_supply, usd_value: usd_value})
        when is_nil(available_supply) or is_nil(usd_value) do
@@ -88,38 +85,4 @@ defmodule BlockScoutWeb.ChainView do
         nil
     end
   end
-
-  def block_type(%Block{consensus: false, nephews: []}), do: "Reorg"
-  def block_type(%Block{consensus: false}), do: "Uncle"
-  def block_type(_block), do: "Block"
-
-  def show_reward?([]), do: false
-  def show_reward?(_), do: true
-
-  def formatted_gas(gas, format \\ []) do
-    BlockScoutWeb.Cldr.Number.to_string!(gas, format)
-  end
-
-  def formatted_timestamp(%Block{timestamp: timestamp}) do
-    Timex.format!(timestamp, "%b-%d-%Y %H:%M:%S %p %Z", :strftime)
-  end
-
-  def combined_rewards_value(block) do
-    block
-    |> Chain.block_combined_rewards()
-    |> format_wei_value(:ether)
-  end
-
-  def cldr_unit_to_string!(unit) do
-    # We do this to trick Dialyzer to not complain about non-local returns caused by bug in Cldr.Unit.to_string! spec
-    case :erlang.phash2(1, 1) do
-      0 ->
-        BlockScoutWeb.Cldr.Unit.to_string!(unit)
-
-      1 ->
-        # does not occur
-        ""
-    end
-  end
-
 end

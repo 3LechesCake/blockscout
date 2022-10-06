@@ -31,8 +31,7 @@ export const initialState = {
   transactionCount: null,
   totalGasUsageCount: null,
   usdMarketCap: null,
-  blockCount: null,
-  tokenCount: null
+  blockCount: null
 }
 
 export const reducer = withMissingBlocks(baseReducer)
@@ -44,7 +43,7 @@ function baseReducer (state = initialState, action) {
     }
     case 'RECEIVED_NEW_ADDRESS_COUNT': {
       return Object.assign({}, state, {
-        addressCount: action.msg.count,
+        addressCount: action.msg.count
       })
     }
     case 'RECEIVED_NEW_BLOCK': {
@@ -62,7 +61,7 @@ function baseReducer (state = initialState, action) {
             action.msg,
             ...pastBlocks
           ],
-          blockCount: action.msg.blockNumber + 1 
+          blockCount: action.msg.blockNumber + 1
         })
       } else {
         return Object.assign({}, state, {
@@ -94,9 +93,9 @@ function baseReducer (state = initialState, action) {
       if (state.channelDisconnected) return state
 
       const transactionCount = state.transactionCount + action.msgs.length
-      console.log('tttttttttttttttttttttttttttttt', action)
+
       if (state.transactionsLoading || state.transactionsError) {
-        return Object.assign({}, state, { transactionCount, tokenCount})
+        return Object.assign({}, state, { transactionCount })
       }
 
       const transactionsLength = state.transactions.length + action.msgs.length
@@ -125,11 +124,6 @@ function baseReducer (state = initialState, action) {
           transactionCount
         })
       }
-    }
-    case 'COUNTERS_FETCHED': {
-      return Object.assign({}, state, {
-        tokenCount: action.tokenCount,
-      })
     }
     case 'TRANSACTION_BATCH_EXPANDED': {
       return Object.assign({}, state, {
@@ -214,15 +208,6 @@ const elements = {
     render ($el, state, oldState) {
       if (oldState.blockCount === state.blockCount) return
       $el.empty().append(numeral(state.blockCount).format())
-    }
-  },
-  '[data-selector="token_count"]': {
-    load ($el) {
-      return { tokenCount: numeral($el.text()).value() }
-    },
-    render ($el, state, oldState) {
-      if (oldState.tokenCount === state.tokenCount) return
-      $el.empty().append(state.tokenCount)
     }
   },
   '[data-selector="address-count"]': {

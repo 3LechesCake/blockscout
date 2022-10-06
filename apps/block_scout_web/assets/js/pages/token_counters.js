@@ -11,8 +11,7 @@ import {
 export const initialState = {
   channelDisconnected: false,
   transferCount: null,
-  tokenHolderCount: null,
-  tokenCount: null,
+  tokenHolderCount: null
 }
 
 export function reducer (state = initialState, action) {
@@ -24,8 +23,7 @@ export function reducer (state = initialState, action) {
     case 'COUNTERS_FETCHED': {
       return Object.assign({}, state, {
         transferCount: action.transferCount,
-        tokenHolderCount: action.tokenHolderCount,
-        tokenCount: action.tokenCount,
+        tokenHolderCount: action.tokenHolderCount
       })
     }
     default:
@@ -54,14 +52,6 @@ const elements = {
     render ($el, state) {
       if (state.tokenHolderCount) {
         $el.empty().text(state.tokenHolderCount + ' Addresses')
-        return $el.show()
-      }
-    }
-  },
-  '[data-selector="token_count"]': {
-    render ($el, state) {
-      if (state.tokenCount) {
-        $el.empty().text(state.tokenCount + ' Tokens')
         return $el.show()
       }
     }

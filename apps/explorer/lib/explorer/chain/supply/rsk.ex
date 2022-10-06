@@ -136,7 +136,7 @@ defmodule Explorer.Chain.Supply.RSK do
   end
 
   def total do
-    Decimal.new(10_000_000_000)
+    Decimal.new(21_000_000)
   end
 
   defp calculate_value(val) do

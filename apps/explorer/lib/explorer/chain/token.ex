@@ -141,15 +141,4 @@ defmodule Explorer.Chain.Token do
       where: token.cataloged == true and token.updated_at <= ^some_time_ago_date
     )
   end
-
-  @doc """
-  Counts all the tokens.
-  """
-  def count do
-    from(
-      a in Token,
-      select: fragment("COUNT(*)")
-    )
-  end
-
 end
