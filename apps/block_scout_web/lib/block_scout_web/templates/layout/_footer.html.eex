@@ -56,34 +56,6 @@
           <li><a href="https://explorer.tresleches.finance" rel="noreferrer" class="footer-link"><%= gettext("MainNet") %></a></li>
         </ul>
       </div>
-      <div class="col-xs-12 col-lg-3">
-        <h3>Follow Us</h3>
-        <ul>
-           <a href="https://discord.gg/ep29yETXFC" rel="noreferrer" target="_blank" class="footer-social-icon" title='<%= gettext("Discord") %>'>
-                <div class="footer-social-icon-container"><img src="/images/discord.png"></div>
-            </a>
-            <a href="https://www.reddit.com/r/TresLechesCake/" rel="noreferrer" target="_blank" class="footer-social-icon" title='<%= gettext("Reddit") %>'>
-                <div class="footer-social-icon-container"><img src="/images/reddit.png"></div>
-            </a>
-            <a href="https://treslechescaketoken.medium.com/" rel="noreferrer" target="_blank" class="footer-social-icon" title='<%= gettext("Medium") %>'>
-                <div class="footer-social-icon-container"><img src="/images/medium.png"></div>
-            </a>
-            <a href="https://github.com/3LechesCake" rel="noreferrer" target="_blank" class="footer-social-icon" title='<%= gettext("Github") %>'>
-                <div class="footer-social-icon-container"><img src="/images/github.png"></div>
-            </a>
-            <a href="https://fb.me/treslechescakeofficial" rel="noreferrer" target="_blank" class="footer-social-icon" title='<%= gettext("Facebook") %>'>
-                <div class="footer-social-icon-container"><img src="/images/facebook.png"></div>
-            </a>
-            <a href="https://www.instagram.com/treslechestoken/" rel="noreferrer" target="_blank" class="footer-social-icon" title='<%= gettext("Instagram") %>'>
-                <div class="footer-social-icon-container"><img src="/images/instagram.png"></div>
-            </a>
-                <a href="https://www.youtube.com/channel/UCiXq5DJbcbdM9ZBFVFGv98g" rel="noreferrer" target="_blank" class="footer-social-icon" title='<%= gettext("Youtube") %>'>
-                <div class="footer-social-icon-container"><img src="/images/youtube.png"></div>
-            </a>
-        </ul>
-      </div>
-
-
     </div>
       <p class="text-right">Copyright © All right reserved 2022. Tres Leches Blockchain</p>
     <% version = version() %>
