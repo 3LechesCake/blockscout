@@ -72,9 +72,6 @@
         </div>
       <% end %>
 
-          </ul>
-        </div>
-      <% end %>
     </div>
 
     <% version = version() %>
