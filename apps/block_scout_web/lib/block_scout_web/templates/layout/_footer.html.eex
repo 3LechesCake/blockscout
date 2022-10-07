@@ -19,21 +19,47 @@
 
     <div class="row">
       <div class="col-xs-12 col-lg-3">
-        <p class="footer-info-text"><%= gettext("Blockscout is a tool for inspecting and analyzing EVM based blockchains. Blockchain explorer for Ethereum Networks.") %></p>
+        <p class="footer-info-text"><%= gettext("Tres Leches Blockchain is focused in development of new product and services that are focused in education.") %></p>
         <div class="footer-social-icons">
           <a href="<%= Application.get_env(:block_scout_web, :footer)[:github_link] %>" rel="noreferrer" target="_blank" class="footer-social-icon" title='<%= gettext("Github") %>'>
             <div class="footer-social-icon-container fontawesome-icon github"></div>
           </a>
           <a href="https://www.twitter.com/treslechestoken/" rel="noreferrer" target="_blank" class="footer-social-icon" title='<%= gettext("Twitter") %>'>
-            <div class="footer-social-icon-container fontawesome-icon twitter"></div>
+          <div class="footer-social-icon-container"><img src="/images/twitter.png"></div>
           </a>
           <a href="https://t.me/TresLechesCakeOfficial_EN" rel="noreferrer" target="_blank" class="footer-social-icon" title='<%= gettext("Telegram") %>'>
-            <div class="footer-social-icon-container fontawesome-icon telegram"></div>
+          <div class="footer-social-icon-container"><img src="/images/telegram.png"></div>
           </a>
           <a href="https://t.me/treslechesfinance" rel="noreferrer" target="_blank" class="footer-social-icon" title='<%= gettext("Telegram News") %>'>
-            <div class="footer-social-icon-container fontawesome-icon telegram"></div>
+          <div class="footer-social-icon-container"><img src="/images/telegram.png"></div>
           </a>
-            <a href="https://discord.gg/ep29yETXFC" rel="noreferrer" target="_blank" class="footer-social-icon" title='<%= gettext("Discord") %>'>
+ 
+        </div>
+      </div>
+
+        <div class="col-xs-12 col-md-4 col-lg-<%= col_size %> footer-list">
+        <h3>Development</h3>
+        <ul>
+          <li><a href="<%= issue_link(@conn) %>" rel="noreferrer" class="footer-link" target="_blank"><%= gettext("Submit an Issue") %></a></li>
+          <li><a href="<%= Application.get_env(:block_scout_web, :footer)[:github_link] %>" rel="noreferrer" class="footer-link"><%= gettext("Contribute") %></a></li>
+          <li><a href="<%= Application.get_env(:block_scout_web, :footer)[:chat_link] %>" rel="noreferrer" class="footer-link"><%= gettext("Chat (#blockscout)") %></a></li>
+          <li><a href="<%= Application.get_env(:block_scout_web, :footer)[:forum_link] %>" rel="noreferrer" class="footer-link"><%= gettext("Forum") %></a></li>
+          <%= render BlockScoutWeb.LayoutView, "_add_chain_to_mm.html" %>
+        </ul>
+      </div>
+
+        <div class="col-xs-12 col-md-4 col-lg-<%= col_size %> footer-list">
+        <h3>Resources</h3>
+        <ul>
+          <li><a href="https://docs.tresleches.finance" rel="noreferrer" class="footer-link"><%= gettext("Technical Docs") %></a></li>
+          <li><a href="https://tresleches.finance" rel="noreferrer" class="footer-link"><%= gettext("Website") %></a></li>
+          <li><a href="https://explorer.tresleches.finance" rel="noreferrer" class="footer-link"><%= gettext("MainNet") %></a></li>
+        </ul>
+      </div>
+      <div class="col-xs-12 col-md-4 col-lg-<%= col_size %> footer-list">
+        <h3>Follow Us</h3>
+        <ul>
+           <a href="https://discord.gg/ep29yETXFC" rel="noreferrer" target="_blank" class="footer-social-icon" title='<%= gettext("Discord") %>'>
                 <div class="footer-social-icon-container"><img src="/images/discord.png"></div>
             </a>
             <a href="https://www.reddit.com/r/TresLechesCake/" rel="noreferrer" target="_blank" class="footer-social-icon" title='<%= gettext("Reddit") %>'>
@@ -54,22 +80,9 @@
                 <a href="https://www.youtube.com/channel/UCiXq5DJbcbdM9ZBFVFGv98g" rel="noreferrer" target="_blank" class="footer-social-icon" title='<%= gettext("Youtube") %>'>
                 <div class="footer-social-icon-container"><img src="/images/youtube.png"></div>
             </a>
-        </div>
-      </div>
-
-      <div class="col-xs-12 col-md-4 col-lg-<%= col_size %> footer-list">
-        <h3>Tres Leches</h3>
-        <ul>
-          <li><a href="<%= issue_link(@conn) %>" rel="noreferrer" class="footer-link" target="_blank"><%= gettext("Submit an Issue") %></a></li>
-          <li><a href="<%= Application.get_env(:block_scout_web, :footer)[:github_link] %>" rel="noreferrer" class="footer-link"><%= gettext("Contribute") %></a></li>
-          <li><a href="<%= Application.get_env(:block_scout_web, :footer)[:chat_link] %>" rel="noreferrer" class="footer-link"><%= gettext("Chat (#blockscout)") %></a></li>
-          <li><a href="<%= Application.get_env(:block_scout_web, :footer)[:forum_link] %>" rel="noreferrer" class="footer-link"><%= gettext("Forum") %></a></li>
-          <li><a href="https://docs.tresleches.finance" rel="noreferrer" class="footer-link"><%= gettext("Technical Docs") %></a></li>
-          <li><a href="https://explorer.tresleches.finance" rel="noreferrer" class="footer-link"><%= gettext("Mainnet") %></a></li>
-          <li><a href="https://explorer-test.tresleches.finance" rel="noreferrer" class="footer-link"><%= gettext("Testnet") %></a></li>
-          <%= render BlockScoutWeb.LayoutView, "_add_chain_to_mm.html" %>
         </ul>
       </div>
+
 
     </div>
       <p class="text-right">Copyright © All right reserved 2022. Tres Leches Blockchain - What is best that a fresh dessert?</p>
