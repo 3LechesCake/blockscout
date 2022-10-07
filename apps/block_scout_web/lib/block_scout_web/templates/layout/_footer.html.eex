@@ -19,7 +19,7 @@
 
     <div class="row">
       <div class="col-xs-12 col-lg-3">
-        <p class="footer-info-text"><%= gettext("Tres Leches Blockchain is focused in development of new product and services that are focused in education.") %></p>
+        <p class="footer-info-text"><%= gettext("Tres Leches Blockchain is focused in development of new technologies, product and services that focus on blockchain education.") %></p>
         <div class="footer-social-icons">
           <a href="<%= Application.get_env(:block_scout_web, :footer)[:github_link] %>" rel="noreferrer" target="_blank" class="footer-social-icon" title='<%= gettext("Github") %>'>
             <div class="footer-social-icon-container fontawesome-icon github"></div>
@@ -42,7 +42,7 @@
         <ul>
           <li><a href="<%= issue_link(@conn) %>" rel="noreferrer" class="footer-link" target="_blank"><%= gettext("Submit an Issue") %></a></li>
           <li><a href="<%= Application.get_env(:block_scout_web, :footer)[:github_link] %>" rel="noreferrer" class="footer-link"><%= gettext("Contribute") %></a></li>
-          <li><a href="<%= Application.get_env(:block_scout_web, :footer)[:chat_link] %>" rel="noreferrer" class="footer-link"><%= gettext("Chat (#blockscout)") %></a></li>
+          <li><a href="<%= Application.get_env(:block_scout_web, :footer)[:chat_link] %>" rel="noreferrer" class="footer-link"><%= gettext("Chat (#tresleches)") %></a></li>
           <li><a href="<%= Application.get_env(:block_scout_web, :footer)[:forum_link] %>" rel="noreferrer" class="footer-link"><%= gettext("Forum") %></a></li>
           <%= render BlockScoutWeb.LayoutView, "_add_chain_to_mm.html" %>
         </ul>
@@ -85,7 +85,7 @@
 
 
     </div>
-      <p class="text-right">Copyright © All right reserved 2022. Tres Leches Blockchain - What is best that a fresh dessert?</p>
+      <p class="text-right">Copyright © All right reserved 2022. Tres Leches Blockchain</p>
     <% version = version() %>
 
     <%= unless ignore_version?(version) do %>
