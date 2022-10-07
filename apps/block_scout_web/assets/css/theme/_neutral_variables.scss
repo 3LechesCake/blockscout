@@ -1,13 +1,13 @@
 // general
 $primary: #f9b253;
 $secondary: #0000;
-$tertiary: #ce0014;
+$tertiary: #fff7ea;
 $additional-font: #fff;
 
 // footer
 $footer-background-color: #ce0014;
 $footer-title-color: #fff;
-$footer-text-color: #f9b253;
+$footer-text-color: #fff;
 $footer-item-disc-color: $secondary;
 .footer-logo { filter: brightness(0) invert(1); }
 
@@ -75,6 +75,6 @@ $api-text-monospace-color: $primary;
 }
 
 // Dark theme
-$dark-primary: #9b62ff;
-$dark-secondary: #87e1a9;
-$dark-primary-alternate: #7e50d0; 
+$dark-primary: #05445E;
+$dark-secondary: #D4F1F4;
+$dark-primary-alternate: #189AB4; 
