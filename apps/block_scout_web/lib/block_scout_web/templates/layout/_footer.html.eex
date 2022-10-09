@@ -25,13 +25,13 @@
             <div class="footer-social-icon-container fontawesome-icon github"></div>
           </a>
           <a href="https://www.twitter.com/treslechestoken/" rel="noreferrer" target="_blank" class="footer-social-icon" title='<%= gettext("Twitter") %>'>
-          <div class="footer-social-icon-container"><img src="/images/twitter.png"></div>
+            <div class="footer-social-icon-container fontawesome-icon twitter"></div>
           </a>
           <a href="https://t.me/TresLechesCakeOfficial_EN" rel="noreferrer" target="_blank" class="footer-social-icon" title='<%= gettext("Telegram") %>'>
-          <div class="footer-social-icon-container"><img src="/images/telegram.png"></div>
+            <div class="footer-social-icon-container fontawesome-icon telegram"></div>
           </a>
           <a href="https://t.me/treslechesfinance" rel="noreferrer" target="_blank" class="footer-social-icon" title='<%= gettext("Telegram News") %>'>
-          <div class="footer-social-icon-container"><img src="/images/telegram.png"></div>
+            <div class="footer-social-icon-container fontawesome-icon telegram"></div>
           </a>
  
         </div>
