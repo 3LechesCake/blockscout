@@ -6166,7 +6166,6 @@ defmodule Explorer.Chain do
 
         "100" ->
           "xdai"
-
         _ ->
           nil
       end
@@ -6177,7 +6176,10 @@ defmodule Explorer.Chain do
 
       try_url
     else
-      nil
+      try_url =
+        "https://raw.githubusercontent.com/3LechesCake/iconassets/${addressHash}/logo.png"
+
+      try_url
     end
   end
 
