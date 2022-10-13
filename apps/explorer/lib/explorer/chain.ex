@@ -6164,12 +6164,6 @@ defmodule Explorer.Chain do
         "99" ->
           "poa"
 
-        "6066" ->
-          "tresleches"
-
-        "6065" ->
-          "tresleches"
-
         "100" ->
           "xdai"
         _ ->
@@ -6178,7 +6172,7 @@ defmodule Explorer.Chain do
 
     if chain_name do
       try_url =
-        "https://raw.githubusercontent.com/3LechesCake/iconassets/${addressHash}/logo.png"
+        "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/${chainName}/assets/${addressHash}/logo.png"
 
       try_url
     else

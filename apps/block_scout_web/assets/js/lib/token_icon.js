@@ -10,18 +10,12 @@ function getTokenIconUrl (chainID, addressHash) {
     case '100':
       chainName = 'xdai'
       break
-    case '6066':
-      chainName = 'tresleches'
-      break
-    case '6065':
-      chainName = 'tresleches'
-      break
     default:
       chainName = null
       break
   }
   if (chainName) {
-    return `https://raw.githubusercontent.com/3LechesCake/iconassets/${addressHash}/logo.png`//Adding own assets.
+    return `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/${chainName}/assets/${addressHash}/logo.png`//Adding own assets.
   } else {
     return null
   }
