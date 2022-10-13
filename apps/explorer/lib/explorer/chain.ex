@@ -6166,6 +6166,7 @@ defmodule Explorer.Chain do
 
         "100" ->
           "xdai"
+          
         _ ->
           nil
       end
