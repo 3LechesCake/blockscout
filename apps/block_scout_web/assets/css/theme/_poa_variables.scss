@@ -1,5 +1,5 @@
 // general
-$primary: #fff7ea;
+$primary: #0718fc;
 $secondary: #f9b253;
 $tertiary: #ce0014;
 $additional-font: #000000;
@@ -14,7 +14,7 @@ $footer-item-disc-color: $secondary;
 // dashboard
 $dashboard-line-color-price: $tertiary; // price left border
 
-$dashboard-banner-chart-legend-label-color: #fff7ea;
+$dashboard-banner-chart-legend-label-color: #0848f6;
 $dashboard-stats-item-label-color: $dashboard-banner-chart-legend-label-color;
 $dashboard-banner-chart-legend-value-color: #ce0014; // chart labels
 $dashboard-stats-item-value-color: #ce0014; // stat values
@@ -36,7 +36,7 @@ $header-icon-color-hover: $secondary;
 $header-icon-border-color-hover: $tertiary;
 
 // buttons
-$btn-line-bg: #fff; // button bg
+$btn-line-bg: rgb(6, 80, 241); // button bg
 $btn-line-color: $tertiary; // button border and font color && hover bg color
 $btn-copy-color: $tertiary; // btn copy
 $btn-qr-color: $tertiary; // btn qr-code
