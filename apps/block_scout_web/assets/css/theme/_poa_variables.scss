@@ -1,5 +1,5 @@
 // general
-$primary: #0718fc;
+$primary: #fff7ea;
 $secondary: #f9b253;
 $tertiary: #ce0014;
 $additional-font: #000000;
@@ -14,16 +14,16 @@ $footer-item-disc-color: $secondary;
 // dashboard
 $dashboard-line-color-price: $tertiary; // price left border
 
-$dashboard-banner-chart-legend-label-color: #0848f6;
+$dashboard-banner-chart-legend-label-color: #0718fc;
 $dashboard-stats-item-label-color: $dashboard-banner-chart-legend-label-color;
-$dashboard-banner-chart-legend-value-color: #ce0014; // chart labels
+$dashboard-banner-chart-legend-value-color: $primary; // chart labels
 $dashboard-stats-item-value-color: #ce0014; // stat values
 
 $dashboard-stats-item-border-color: $secondary; // stat border
 
-$dashboard-banner-gradient-start: $primary; // gradient begin
+$dashboard-banner-gradient-start: $tertiary; // gradient begin
 
-$dashboard-banner-gradient-end: lighten($primary, 5); // gradient end
+$dashboard-banner-gradient-end: lighten($tertiary, 5); // gradient end
 
 $dashboard-banner-network-plain-container-background-color: #f9b253; // stats bg
 
@@ -64,9 +64,9 @@ $card-tab-active: $secondary;
 }
 
 // Badges
-$badge-neutral-color: $primary;
+$badge-neutral-color: $tertiary;
 $badge-neutral-background-color: rgba($secondary, .1);
-$api-text-monospace-color: $tertiary;
+$api-text-monospace-color: $primary;
 
 // Tokens dropdown
 .token-balance-dropdown[aria-labelledby="dropdown-tokens"] {
