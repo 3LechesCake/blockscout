@@ -1,11 +1,11 @@
 function getTokenIconUrl (chainID, addressHash) {
   let chainName = null
   switch (chainID) {
-    case '1':
-      chainName = 'ethereum'
+    case '6066':
+      chainName = 'tresleches'
       break
-    case '99':
-      chainName = 'poa'
+    case '6065':
+      chainName = 'tresleches'
       break
     case '100':
       chainName = 'xdai'
@@ -15,7 +15,7 @@ function getTokenIconUrl (chainID, addressHash) {
       break
   }
   if (chainName) {
-    return `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/${chainName}/assets/${addressHash}/logo.png`
+    return `https://raw.githubusercontent.com/treslecheschain/assets/master/blockchains/${chainName}/assets/${addressHash}/logo.png`
   } else {
     return null
   }
