@@ -4,6 +4,8 @@ import Config
 ### BlockScout Web ###
 ######################
 
+config :block_scout_web, BlockScoutWeb.API.V2, enabled: true
+
 ########################
 ### Ethereum JSONRPC ###
 ########################
