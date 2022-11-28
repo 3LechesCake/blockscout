@@ -864,12 +864,12 @@ msgstr ""
 #: lib/block_scout_web/templates/smart_contract/_functions.html.eex:146
 #, elixir-autogen, elixir-format
 msgid "ETH"
-msgstr ""
+msgstr "TRES"
 
 #: lib/block_scout_web/templates/api_docs/eth_rpc.html.eex:4
 #, elixir-autogen, elixir-format
 msgid "ETH RPC API Documentation"
-msgstr ""
+msgstr "TRES RPC API Documentation"
 
 #: lib/block_scout_web/templates/address_contract/index.html.eex:76
 #: lib/block_scout_web/templates/address_contract_verification_via_flattened_code/new.html.eex:26
@@ -942,7 +942,7 @@ msgstr ""
 #: lib/block_scout_web/templates/layout/_topnav.html.eex:109
 #, elixir-autogen, elixir-format
 msgid "Eth RPC"
-msgstr ""
+msgstr "TRES RPC"
 
 #: lib/block_scout_web/templates/address/_current_coin_balance.html.eex:11
 #: lib/block_scout_web/templates/address/index.html.eex:5
