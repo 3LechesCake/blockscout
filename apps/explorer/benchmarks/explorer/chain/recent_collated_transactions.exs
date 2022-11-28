@@ -8,7 +8,7 @@ alias Explorer.Chain.Block
 Benchee.run(
   %{
     "Explorer.Chain.recent_collated_transactions" => fn _ ->
-      Chain.recent_collated_transactions(true)
+      Chain.recent_collated_transactions()
     end
   },
   inputs: %{

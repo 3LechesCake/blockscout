@@ -3,8 +3,7 @@ defmodule BlockScoutWeb.SearchController do
 
   import BlockScoutWeb.Chain, only: [paging_options: 1, next_page_params: 3, split_list_by_page: 1]
 
-  alias BlockScoutWeb.{Controller, SearchView}
-  alias Explorer.Chain
+  alias BlockScoutWeb.{ChainController, Controller, SearchView}
   alias Phoenix.View
 
   def search_results(conn, %{"q" => query, "type" => "JSON"} = params) do
@@ -13,7 +12,7 @@ defmodule BlockScoutWeb.SearchController do
 
     search_results_plus_one =
       paging_options
-      |> Chain.joint_search(offset, query)
+      |> ChainController.search_by(offset, query)
 
     {search_results, next_page} = split_list_by_page(search_results_plus_one)
 

@@ -11,7 +11,7 @@ defmodule BlockScoutWeb.RecentTransactionsController do
   def index(conn, _params) do
     if ajax?(conn) do
       recent_transactions =
-        Chain.recent_collated_transactions(true,
+        Chain.recent_collated_transactions(
           necessity_by_association: %{
             :block => :required,
             [created_contract_address: :names] => :optional,

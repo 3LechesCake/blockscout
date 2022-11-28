@@ -6127,11 +6127,11 @@ defmodule Explorer.Chain do
   def get_token_icon_url_by(chain_id, address_hash) do
     chain_name =
       case chain_id do
-        "6066" ->
-          "tresleches"
+        "1" ->
+          "ethereum"
 
-        "6065" ->
-          "tresleches"
+        "99" ->
+          "poa"
 
         "100" ->
           "xdai"
@@ -6142,7 +6142,7 @@ defmodule Explorer.Chain do
 
     if chain_name do
       try_url =
-        "https://raw.githubusercontent.com/treslecheschain/assets/master/blockchains/#{chain_name}/assets/#{address_hash}/logo.png"
+        "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/#{chain_name}/assets/#{address_hash}/logo.png"
 
       try_url
     else

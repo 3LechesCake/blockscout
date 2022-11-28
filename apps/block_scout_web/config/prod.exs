@@ -15,7 +15,11 @@ import Config
 # which you typically run after static files are built.
 config :block_scout_web, BlockScoutWeb.Endpoint,
   cache_static_manifest: "priv/static/cache_manifest.json",
-  force_ssl: false
+  force_ssl: false,
+  url: [
+    path: System.get_env("NETWORK_PATH") || "/",
+    api_path: System.get_env("API_PATH") || "/"
+  ]
 
 config :block_scout_web, BlockScoutWeb.Tracer, env: "production", disabled?: true
 

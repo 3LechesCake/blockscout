@@ -57,8 +57,7 @@ if ($transactionDetailsPage.length) {
   pathParts.includes('token-transfers') ||
   pathParts.includes('logs') ||
   pathParts.includes('token-transfers') ||
-  pathParts.includes('raw-trace') ||
-  pathParts.includes('state')
+  pathParts.includes('raw-trace')
   if (shouldScroll) {
     document.getElementById('transaction-tabs').scrollIntoView()
   }

@@ -9,7 +9,6 @@ defmodule Explorer.Chain.Transaction do
 
   alias ABI.FunctionSelector
 
-  alias Ecto.Association.NotLoaded
   alias Ecto.Changeset
 
   alias Explorer.{Chain, Repo}
@@ -466,18 +465,6 @@ defmodule Explorer.Chain.Transaction do
   def decoded_input_data(%__MODULE__{to_address: %{contract_code: nil}}), do: {:error, :not_a_contract_call}
 
   def decoded_input_data(%__MODULE__{
-        to_address: %{smart_contract: %NotLoaded{}},
-        input: input,
-        hash: hash
-      }) do
-    decoded_input_data(%__MODULE__{
-      to_address: %{smart_contract: nil},
-      input: input,
-      hash: hash
-    })
-  end
-
-  def decoded_input_data(%__MODULE__{
         to_address: %{smart_contract: nil},
         input: %{bytes: <<method_id::binary-size(4), _::binary>> = data},
         hash: hash
@@ -512,7 +499,7 @@ defmodule Explorer.Chain.Transaction do
         hash: hash
       }) do
     case do_decoded_input_data(data, abi, address_hash, hash) do
-      # In some cases transactions use methods of some unpredictable contracts, so we can try to look up for method in a whole DB
+      # In some cases transactions use methods of some unpredictadle contracts, so we can try to look up for method in a whole DB
       {:error, :could_not_decode} ->
         case decoded_input_data(%__MODULE__{
                to_address: %{smart_contract: nil},
@@ -571,16 +558,14 @@ defmodule Explorer.Chain.Transaction do
 
   def get_method_name(_), do: "Transfer"
 
-  def parse_method_name(method_desc, need_upcase \\ true) do
+  defp parse_method_name(method_desc) do
     method_desc
     |> String.split("(")
     |> Enum.at(0)
-    |> upcase_first(need_upcase)
+    |> upcase_first
   end
 
-  defp upcase_first(string, false), do: string
-
-  defp upcase_first(<<first::utf8, rest::binary>>, true), do: String.upcase(<<first::utf8>>) <> rest
+  defp upcase_first(<<first::utf8, rest::binary>>), do: String.upcase(<<first::utf8>>) <> rest
 
   defp function_call(name, mapping) do
     text =

@@ -439,7 +439,6 @@ defmodule Explorer.Etherscan do
     from_address_hash
     to_address_hash
     amount
-    amounts
   )a
 
   defp list_token_transfers(address_hash, contract_address_hash, block_height, options) do
@@ -454,7 +453,7 @@ defmodule Explorer.Etherscan do
         offset: ^offset(options),
         select:
           merge(map(tt, ^@token_transfer_fields), %{
-            token_ids: tt.token_ids,
+            token_id: tt.token_id,
             token_name: tkn.name,
             token_symbol: tkn.symbol,
             token_decimals: tkn.decimals,
@@ -480,7 +479,6 @@ defmodule Explorer.Etherscan do
           from_address_hash: tt.from_address_hash,
           to_address_hash: tt.to_address_hash,
           amount: tt.amount,
-          amounts: tt.amounts,
           transaction_nonce: t.nonce,
           transaction_index: t.index,
           transaction_gas: t.gas,
@@ -492,7 +490,7 @@ defmodule Explorer.Etherscan do
           block_number: b.number,
           block_timestamp: b.timestamp,
           confirmations: fragment("? - ?", ^block_height, t.block_number),
-          token_ids: tt.token_ids,
+          token_id: tt.token_id,
           token_name: tt.token_name,
           token_symbol: tt.token_symbol,
           token_decimals: tt.token_decimals,

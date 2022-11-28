@@ -197,7 +197,7 @@
               <%= render BlockScoutWeb.AddressView, "_link.html", address: from_address, contract: BlockScoutWeb.AddressView.contract?(from_address), use_custom_tooltip: false, trimmed: false %>
               <%= render BlockScoutWeb.CommonComponentsView, "_btn_copy.html",
                 additional_classes: ["btn-copy-icon-small", "btn-copy-icon-custom", "btn-copy-icon-no-borders"],
-                clipboard_text: Address.checksum(from_address_hash),
+                clipboard_text: from_address_hash,
                 aria_label: gettext("Copy From Address"),
                 title: gettext("Copy From Address") %>
             </dd>
@@ -223,14 +223,14 @@
                   &nbsp;<%= gettext("created") %>]
                   <%= render BlockScoutWeb.CommonComponentsView, "_btn_copy.html",
                     additional_classes: ["btn-copy-icon-small", "btn-copy-icon-custom", "btn-copy-icon-no-borders"],
-                    clipboard_text: Address.checksum(recipient_address_hash),
+                    clipboard_text: recipient_address_hash,
                     aria_label: gettext("Copy To Address"),
                     title: gettext("Copy To Address") %>
                 <% recipient_address_hash -> %>
                   <%= render BlockScoutWeb.AddressView, "_link.html", address: to_address, contract: BlockScoutWeb.AddressView.contract?(to_address), use_custom_tooltip: false, trimmed: false %>
                   <%= render BlockScoutWeb.CommonComponentsView, "_btn_copy.html",
                     additional_classes: ["btn-copy-icon-small", "btn-copy-icon-custom", "btn-copy-icon-no-borders"],
-                    clipboard_text: Address.checksum(recipient_address_hash),
+                    clipboard_text: recipient_address_hash,
                     aria_label: gettext("Copy To Address"),
                     title: gettext("Copy To Address") %>
                 <% true -> %>

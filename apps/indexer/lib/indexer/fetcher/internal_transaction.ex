@@ -21,8 +21,16 @@ defmodule Indexer.Fetcher.InternalTransaction do
 
   @behaviour BufferedTask
 
-  @default_max_batch_size 10
-  @default_max_concurrency 4
+  @max_batch_size 10
+  @max_concurrency 4
+  @defaults [
+    flush_interval: :timer.seconds(3),
+    max_concurrency: @max_concurrency,
+    max_batch_size: @max_batch_size,
+    poll: true,
+    task_supervisor: Indexer.Fetcher.InternalTransaction.TaskSupervisor,
+    metadata: [fetcher: :internal_transaction]
+  ]
 
   @doc """
   Asynchronously fetches internal transactions.
@@ -32,10 +40,10 @@ defmodule Indexer.Fetcher.InternalTransaction do
   Internal transactions are an expensive upstream operation. The number of
   results to fetch is configured by `@max_batch_size` and represents the number
   of transaction hashes to request internal transactions in a single JSONRPC
-  request. Defaults to `#{@default_max_batch_size}`.
+  request. Defaults to `#{@max_batch_size}`.
 
   The `@max_concurrency` attribute configures the  number of concurrent requests
-  of `@max_batch_size` to allow against the JSONRPC. Defaults to `#{@default_max_concurrency}`.
+  of `@max_batch_size` to allow against the JSONRPC. Defaults to `#{@max_concurrency}`.
 
   *Note*: The internal transactions for individual transactions cannot be paginated,
   so the total number of internal transactions that could be produced is unknown.
@@ -60,7 +68,7 @@ defmodule Indexer.Fetcher.InternalTransaction do
     end
 
     merged_init_opts =
-      defaults()
+      @defaults
       |> Keyword.merge(mergeable_init_options)
       |> Keyword.put(:state, state)
 
@@ -264,16 +272,5 @@ defmodule Indexer.Fetcher.InternalTransaction do
         internal_transaction_param
       end
     end)
-  end
-
-  defp defaults do
-    [
-      flush_interval: :timer.seconds(3),
-      max_concurrency: Application.get_env(:indexer, __MODULE__)[:concurrency] || @default_max_concurrency,
-      max_batch_size: Application.get_env(:indexer, __MODULE__)[:batch_size] || @default_max_batch_size,
-      poll: true,
-      task_supervisor: Indexer.Fetcher.InternalTransaction.TaskSupervisor,
-      metadata: [fetcher: :internal_transaction]
-    ]
   end
 end
